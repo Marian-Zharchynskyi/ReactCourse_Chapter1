@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import './App.css'
-import AddToDoComponent from './components/AddToDoComponent'
-import ToDoTable from './components/ToDoTable'
-import SearchInput from './components/SearchInput'
-import PageTitle from './components/PageTitle'
+import AddToDoComponent from './AddToDoComponent'
+import SearchInput from './SearchInput'
+import ToDoTable from './ToDoTable'
 
-function App() {
+const ToDoContainer = () => {
   const [toDos, setToDos] = useState([])
   const [newToDo, setNewToDo] = useState(null)
   const [filterValue, setFilter] = useState('')
@@ -36,7 +34,6 @@ function App() {
 
   return (
     <>
-      <PageTitle title="ToDo Table:"/>
       <AddToDoComponent
         title={newToDo?.title || ''}
         onTitleChange={handleNewTitleChange}
@@ -50,4 +47,4 @@ function App() {
   )
 }
 
-export default App
+export default ToDoContainer
