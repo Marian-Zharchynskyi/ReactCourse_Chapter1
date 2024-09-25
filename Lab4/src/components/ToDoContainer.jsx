@@ -1,20 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import AddToDo from './AddToDo'
 import SearchInput from './SearchInput'
 import ToDoTable from './ToDoTable'
-import UseGetAllToDo from './UseGetAllToDo'
+import useGetAllToDo from '../hooks/useGetAllToDo'
 
 const ToDoContainer = () => {
-  const { isLoading, data } = UseGetAllToDo()
-  const [toDos, setToDos] = useState([])
+  const { isLoading, data, setData } = useGetAllToDo()
+
   const [newToDo, setNewToDo] = useState(null)
   const [filterValue, setFilter] = useState('')
-
-  useEffect(() => {
-    if (data) {
-      setToDos(data)
-    }
-  }, [data])
 
   function handleNewTitleChange(event) {
     setNewToDo({ id: Date.now(), title: event.target.value })
@@ -23,20 +17,20 @@ const ToDoContainer = () => {
   function handleSubmit(event) {
     event.preventDefault()
     if (newToDo) {
-      setToDos([...toDos, newToDo])
+      setData([...data, newToDo])
       setNewToDo(null)
     }
   }
 
   function handleDelete(id) {
-    setToDos(toDos.filter((toDo) => toDo.id !== id))
+    setData(data.filter((toDo) => toDo.id !== id))
   }
 
   function handleFilterChange(event) {
     setFilter(event.target.value)
   }
 
-  const filteredToDos = toDos.filter((toDo) =>
+  const filteredToDos = data.filter((toDo) =>
     toDo.title.toLowerCase().includes(filterValue.toLowerCase())
   )
 

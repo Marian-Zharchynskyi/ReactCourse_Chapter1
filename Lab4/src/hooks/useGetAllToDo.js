@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import useLoading from './useLoading'
 
-const UseGetAllToDo = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [data, setData] = useState(null)
+const useGetAllToDo = () => {
+  const {isLoading, setIsLoading} = useLoading()
+
+  const [data, setData] = useState([])
 
   useEffect(() => {
     setIsLoading(true)
@@ -17,7 +19,7 @@ const UseGetAllToDo = () => {
     fetchData()
   }, [])
 
-  return { isLoading, data }
+  return { isLoading, data, setData }
 }
 
-export default UseGetAllToDo
+export default useGetAllToDo
