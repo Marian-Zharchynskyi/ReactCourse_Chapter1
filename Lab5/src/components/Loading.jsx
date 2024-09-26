@@ -1,10 +1,10 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const Loading = ({ loading, children }) => {
+const Loading = ({ isLoading, children }) => {
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <div className="d-flex justify-content-center">
           <div className="spinner-border" role="status">
             <span className="sr-only"></span>

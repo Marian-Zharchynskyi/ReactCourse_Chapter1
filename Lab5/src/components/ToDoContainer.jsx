@@ -36,7 +36,7 @@ const ToDoContainer = () => {
   )
 
   return (
-    <Loading loading={isLoading}>
+    <Loading isLoading={isLoading}>
       <>
         <AddToDo
           title={newToDo?.title || ''}
