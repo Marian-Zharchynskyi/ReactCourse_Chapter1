@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
 const ToDoTable = ({ toDos, onDelete, onEdit }) => {
-  const [editingId, setEditingId] = useState(null)
+  const [editId, setEditId] = useState(null)
   const [editValue, setEditValue] = useState('')
   const [error, setError] = useState('')
 
   const handleEditClick = (toDo) => {
-    setEditingId(toDo.id)
+    setEditId(toDo.id)
     setEditValue(toDo.title)
     setError('')
   }
@@ -18,7 +18,7 @@ const ToDoTable = ({ toDos, onDelete, onEdit }) => {
     }
 
     onEdit(id, editValue)
-    setEditingId(null)
+    setEditId(null)
     setError('')
   }
 
@@ -37,7 +37,7 @@ const ToDoTable = ({ toDos, onDelete, onEdit }) => {
             <tr key={toDo.id.toString()}>
               <td>{toDo.id.toString()}</td>
               <td>
-                {editingId === toDo.id ? (
+                {editId === toDo.id ? (
                   <>
                     <input
                       value={editValue}
@@ -51,7 +51,7 @@ const ToDoTable = ({ toDos, onDelete, onEdit }) => {
                 )}
               </td>
               <td>
-                {editingId === toDo.id ? (
+                {editId === toDo.id ? (
                   <button onClick={() => handleSaveClick(toDo.id)}>Save</button>
                 ) : (
                   <button onClick={() => handleEditClick(toDo)}>Edit</button>
